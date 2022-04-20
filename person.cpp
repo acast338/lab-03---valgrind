@@ -52,6 +52,7 @@ void Person::printLineage(char dir, int level){
             father->printLineage(dir, level + 1);
         }
     }
+    delete[] temp;
 }
 
 /* helper function to compute the lineage
