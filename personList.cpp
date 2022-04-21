@@ -12,6 +12,11 @@ PersonList::PersonList(){
 }
 
 PersonList::~PersonList(){
+    for(int i = 0; i < numPeople; i++){
+        // theList[i].~Person;
+         delete theList[i];
+	// theList[i]->~Person();
+    }   // add for loop to delete pointers in array before deleting array
     delete [] theList;
 }
 

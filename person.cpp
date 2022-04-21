@@ -16,7 +16,9 @@ Person::Person(const char *name_, Person* father_, Person* mother_){
 }
 
 Person::~Person(){
-    delete children;
+    // cout << "calling ~Person()" << endl;
+    delete[] name;
+    delete[] children; // fix notation from delete to delete[]
 }
 
 void Person::addChild(Person *newChild){
@@ -52,7 +54,7 @@ void Person::printLineage(char dir, int level){
             father->printLineage(dir, level + 1);
         }
     }
-    delete[] temp; 
+    delete[] temp; // deallocates after temp's use isn't needed anymore
 }
 
 /* helper function to compute the lineage
@@ -80,5 +82,6 @@ void expand(Person ***t, int *MAX){
   Person **temp = new Person*[2 * *MAX];
   memcpy(temp, *t, *MAX * sizeof(**t));
   *MAX *= 2;
+  delete[] (*t); // added code
   *t = temp;
 }
